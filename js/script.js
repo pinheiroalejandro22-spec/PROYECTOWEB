@@ -1,391 +1,388 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const ADMIN_ACCOUNT = {
-        name: 'Administrador Hakuna Matata',
-        email: 'admin@hakunamatata.bo',
-        password: 'admin123',
-        role: 'admin'
+    const CUENTA_ADMIN = {
+        nombre: 'Administrador Hakuna Matata',
+        correo: 'admin@hakunamatata.bo',
+        contrasena: 'admin123',
+        rol: 'admin'
     };
 
-    const GUEST_USER = {
-        name: 'Invitado Hakuna Matata',
-        email: 'invitado@hakunamatata.bo',
-        password: '',
-        role: 'user'
+    const USUARIO_INVITADO = {
+        nombre: 'Invitado Hakuna Matata',
+        correo: 'invitado@hakunamatata.bo',
+        contrasena: '',
+        rol: 'user'
     };
 
-    let users = JSON.parse(localStorage.getItem('hm_users')) || [ADMIN_ACCOUNT];
-    if (!users.some(u => u.email === ADMIN_ACCOUNT.email)) {
-        users.push(ADMIN_ACCOUNT);
-        localStorage.setItem('hm_users', JSON.stringify(users));
+    let usuarios = JSON.parse(localStorage.getItem('hm_users')) || [CUENTA_ADMIN];
+    if (!usuarios.some(u => u.correo === CUENTA_ADMIN.correo)) {
+        usuarios.push(CUENTA_ADMIN);
+        localStorage.setItem('hm_users', JSON.stringify(usuarios));
     }
 
-    let appointments = JSON.parse(localStorage.getItem('hm_appointments')) || [
+    let citas = JSON.parse(localStorage.getItem('hm_appointments')) || [
         {
             id: 1,
-            userEmail: 'lucia@ejemplo.com',
-            userName: 'Lucía Fernández',
-            petName: 'Luna (Perro)',
-            service: 'Consulta General',
-            price: 50,
+            correoUsuario: 'lucia@ejemplo.com',
+            nombreUsuario: 'Lucía Fernández',
+            nombreMascota: 'Luna (Perro)',
+            servicio: 'Consulta General',
+            precio: 50,
             doctor: 'Dra. Elena Martínez',
-            date: '2026-11-24T10:00',
-            payment: 'QR Simple (Bs.)',
-            status: 'Pendiente'
+            fecha: '2026-11-24T10:00',
+            pago: 'QR Simple (Bs.)',
+            estado: 'Pendiente'
         }
     ];
 
-    let currentUser = JSON.parse(localStorage.getItem('hm_currentUser')) || null;
+    let usuarioActual = JSON.parse(localStorage.getItem('hm_currentUser')) || null;
 
-    const sessionContainer = document.getElementById('hmSessionArea');
-    const dashboardSection = document.getElementById('hmDashboard');
-    const authModal = document.getElementById('hmAuthModal');
-    const bookingModal = document.getElementById('hmBookingModal');
-    const tableBody = document.getElementById('hmTableBody');
+    const contenedorSesion = document.getElementById('hmSessionArea');
+    const seccionPanel = document.getElementById('hmDashboard');
+    const ventanaAcceso = document.getElementById('hmAuthModal');
+    const ventanaCita = document.getElementById('hmBookingModal');
+    const cuerpoTabla = document.getElementById('hmTableBody');
 
-    function openModal(modalEl) {
-        if (modalEl) {
-            modalEl.classList.remove('modal--hidden');
+    function abrirVentana(elementoVentana) {
+        if (elementoVentana) {
+            elementoVentana.classList.remove('ventana--oculta');
         }
     }
 
-    function closeModal(modalEl) {
-        if (modalEl) {
-            modalEl.classList.add('modal--hidden');
+    function cerrarVentana(elementoVentana) {
+        if (elementoVentana) {
+            elementoVentana.classList.add('ventana--oculta');
         }
     }
 
-    function formatDateTime(rawDate) {
-        if (!rawDate) return '';
-        const parsed = new Date(rawDate);
-        if (Number.isNaN(parsed.getTime())) {
-            return rawDate.replace('T', ' ');
+    function formatearFechaHora(fechaSinFormato) {
+        if (!fechaSinFormato) return '';
+        const fechaAnalizada = new Date(fechaSinFormato);
+        if (Number.isNaN(fechaAnalizada.getTime())) {
+            return fechaSinFormato.replace('T', ' ');
         }
         const dias = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
-        const diaNombre = dias[parsed.getDay()];
-        const dd = String(parsed.getDate()).padStart(2, '0');
-        const mm = String(parsed.getMonth() + 1).padStart(2, '0');
-        const yyyy = parsed.getFullYear();
-        const hh = String(parsed.getHours()).padStart(2, '0');
-        const min = String(parsed.getMinutes()).padStart(2, '0');
-        return `${diaNombre} ${dd}/${mm}/${yyyy} · ${hh}:${min}`;
+        const nombreDia = dias[fechaAnalizada.getDay()];
+        const dia = String(fechaAnalizada.getDate()).padStart(2, '0');
+        const mes = String(fechaAnalizada.getMonth() + 1).padStart(2, '0');
+        const anio = fechaAnalizada.getFullYear();
+        const hora = String(fechaAnalizada.getHours()).padStart(2, '0');
+        const minutos = String(fechaAnalizada.getMinutes()).padStart(2, '0');
+        return `${nombreDia} ${dia}/${mes}/${anio} · ${hora}:${minutos}`;
     }
 
-    function renderSessionAndDashboard() {
-        if (!sessionContainer) return;
+    function renderizarSesionYPanel() {
+        if (!contenedorSesion) return;
 
-        if (currentUser) {
-            sessionContainer.innerHTML = `
-                <span class="header__user-badge">${currentUser.role === 'admin' ? '👑 Admin' : '🐾 ' + currentUser.name.split(' ')[0]}</span>
-                <button type="button" id="hmBtnLogout" class="btn btn--outline">Salir</button>
+        if (usuarioActual) {
+            contenedorSesion.innerHTML = `
+                <span class="encabezado__insignia-usuario">${usuarioActual.rol === 'admin' ? '👑 Admin' : '🐾 ' + usuarioActual.nombre.split(' ')[0]}</span>
+                <button type="button" id="hmBtnLogout" class="boton boton--contorno">Salir</button>
             `;
 
-            const btnLogout = document.getElementById('hmBtnLogout');
-            if (btnLogout) {
-                btnLogout.addEventListener('click', () => {
-                    currentUser = null;
+            const botonSalir = document.getElementById('hmBtnLogout');
+            if (botonSalir) {
+                botonSalir.addEventListener('click', () => {
+                    usuarioActual = null;
                     localStorage.removeItem('hm_currentUser');
-                    renderSessionAndDashboard();
+                    renderizarSesionYPanel();
                 });
             }
 
-            if (dashboardSection) {
-                dashboardSection.classList.remove('dashboard--hidden');
+            if (seccionPanel) {
+                seccionPanel.classList.remove('panel--oculto');
             }
 
-            const metricsEl = document.getElementById('hmAdminMetrics');
-            const roleTagEl = document.getElementById('hmRoleTag');
-            const dashTitleEl = document.getElementById('hmDashTitle');
-            const dashSubEl = document.getElementById('hmDashSub');
+            const elementoMetricas = document.getElementById('hmAdminMetrics');
+            const etiquetaRol = document.getElementById('hmRoleTag');
+            const tituloPanel = document.getElementById('hmDashTitle');
+            const subtituloPanel = document.getElementById('hmDashSub');
 
-            if (currentUser.role === 'admin') {
-                if (roleTagEl) roleTagEl.textContent = '👑 ADMINISTRADOR DE LA PÁGINA';
-                if (dashTitleEl) dashTitleEl.textContent = 'Panel de Control — Hakuna Matata';
-                if (dashSubEl) dashSubEl.textContent = 'Controla todas las citas, estados e ingresos en Bolivianos (Bs.).';
-                if (metricsEl) metricsEl.classList.remove('dashboard__metrics--hidden');
+            if (usuarioActual.rol === 'admin') {
+                if (etiquetaRol) etiquetaRol.textContent = '👑 ADMINISTRADOR DE LA PÁGINA';
+                if (tituloPanel) tituloPanel.textContent = 'Panel de Control — Hakuna Matata';
+                if (subtituloPanel) subtituloPanel.textContent = 'Controla todas las citas, estados e ingresos en Bolivianos (Bs.).';
+                if (elementoMetricas) elementoMetricas.classList.remove('panel__metricas--oculto');
             } else {
-                if (roleTagEl) roleTagEl.textContent = '🐾 CUENTA DE USUARIO';
-                if (dashTitleEl) dashTitleEl.textContent = `Hola, ${currentUser.name}`;
-                if (dashSubEl) dashSubEl.textContent = 'Revisa tus citas agendadas y reserva nuevas atenciones.';
-                if (metricsEl) metricsEl.classList.add('dashboard__metrics--hidden');
+                if (etiquetaRol) etiquetaRol.textContent = '🐾 CUENTA DE USUARIO';
+                if (tituloPanel) tituloPanel.textContent = `Hola, ${usuarioActual.nombre}`;
+                if (subtituloPanel) subtituloPanel.textContent = 'Revisa tus citas agendadas y reserva nuevas atenciones.';
+                if (elementoMetricas) elementoMetricas.classList.add('panel__metricas--oculto');
             }
 
-            renderTable();
+            renderizarTabla();
         } else {
-            sessionContainer.innerHTML = `<button type="button" id="hmBtnOpenAuth" class="btn btn--outline">Ingresar / Registrarse</button>`;
-            const btnOpenAuth = document.getElementById('hmBtnOpenAuth');
-            if (btnOpenAuth) {
-                btnOpenAuth.addEventListener('click', () => openModal(authModal));
+            contenedorSesion.innerHTML = `<button type="button" id="hmBtnOpenAuth" class="boton boton--contorno">Ingresar / Registrarse</button>`;
+            const botonAbrirAcceso = document.getElementById('hmBtnOpenAuth');
+            if (botonAbrirAcceso) {
+                botonAbrirAcceso.addEventListener('click', () => abrirVentana(ventanaAcceso));
             }
-            if (dashboardSection) {
-                dashboardSection.classList.add('dashboard--hidden');
+            if (seccionPanel) {
+                seccionPanel.classList.add('panel--oculto');
             }
         }
     }
 
-    function renderTable() {
-        if (!tableBody || !currentUser) return;
+    function renderizarTabla() {
+        if (!cuerpoTabla || !usuarioActual) return;
 
-        tableBody.innerHTML = '';
-        const list = currentUser.role === 'admin'
-            ? appointments
-            : appointments.filter(a => a.userEmail === currentUser.email);
+        cuerpoTabla.innerHTML = '';
+        const lista = usuarioActual.rol === 'admin'
+            ? citas
+            : citas.filter(cita => cita.correoUsuario === usuarioActual.correo);
 
-        if (currentUser.role === 'admin') {
-            const pend = appointments.filter(a => a.status === 'Pendiente').length;
-            const totalBs = appointments.reduce((sum, item) => sum + Number(item.price), 0);
-            const metricTotal = document.getElementById('hmMetricTotal');
-            const metricPend = document.getElementById('hmMetricPend');
-            const metricBs = document.getElementById('hmMetricBs');
+        if (usuarioActual.rol === 'admin') {
+            const pendientes = citas.filter(cita => cita.estado === 'Pendiente').length;
+            const totalBs = citas.reduce((suma, item) => suma + Number(item.precio), 0);
+            const metricaTotal = document.getElementById('hmMetricTotal');
+            const metricaPendientes = document.getElementById('hmMetricPend');
+            const metricaBs = document.getElementById('hmMetricBs');
 
-            if (metricTotal) metricTotal.textContent = appointments.length;
-            if (metricPend) metricPend.textContent = pend;
-            if (metricBs) metricBs.textContent = `Bs. ${totalBs}`;
+            if (metricaTotal) metricaTotal.textContent = citas.length;
+            if (metricaPendientes) metricaPendientes.textContent = pendientes;
+            if (metricaBs) metricaBs.textContent = `Bs. ${totalBs}`;
         }
 
-        if (list.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="8" class="data-table__td data-table__empty">No hay citas registradas todavía.</td></tr>`;
+        if (lista.length === 0) {
+            cuerpoTabla.innerHTML = `<tr><td colspan="8" class="tabla-datos__celda tabla-datos__vacia">No hay citas registradas todavía.</td></tr>`;
             return;
         }
 
-        list.forEach(cita => {
-            const tr = document.createElement('tr');
-            const stModifier = cita.status === 'Atendida' ? 'data-table__status--atendida' : 'data-table__status--pendiente';
-            const btns = currentUser.role === 'admin'
-                ? `<button type="button" class="data-table__btn data-table__btn--ok" onclick="hmAtender(${cita.id})">Atender</button>
-                   <button type="button" class="data-table__btn data-table__btn--del" onclick="hmEliminar(${cita.id})">Eliminar</button>`
-                : `<button type="button" class="data-table__btn data-table__btn--del" onclick="hmEliminar(${cita.id})">Cancelar</button>`;
+        lista.forEach(cita => {
+            const fila = document.createElement('tr');
+            const modificadorEstado = cita.estado === 'Atendida' ? 'tabla-datos__estado--atendida' : 'tabla-datos__estado--pendiente';
+            const botones = usuarioActual.rol === 'admin'
+                ? `<button type="button" class="tabla-datos__boton tabla-datos__boton--ok" onclick="hmAtender(${cita.id})">Atender</button>
+                   <button type="button" class="tabla-datos__boton tabla-datos__boton--eliminar" onclick="hmEliminar(${cita.id})">Eliminar</button>`
+                : `<button type="button" class="tabla-datos__boton tabla-datos__boton--eliminar" onclick="hmEliminar(${cita.id})">Cancelar</button>`;
 
-            tr.innerHTML = `
-                <td class="data-table__td">${cita.userName}</td>
-                <td class="data-table__td">${cita.petName}</td>
-                <td class="data-table__td">${cita.service}</td>
-                <td class="data-table__td">${cita.doctor}</td>
-                <td class="data-table__td">${formatDateTime(cita.date)}</td>
-                <td class="data-table__td"><strong>Bs. ${cita.price}</strong></td>
-                <td class="data-table__td"><span class="data-table__status ${stModifier}">${cita.status}</span></td>
-                <td class="data-table__td">${btns}</td>
+            fila.innerHTML = `
+                <td class="tabla-datos__celda">${cita.nombreUsuario}</td>
+                <td class="tabla-datos__celda">${cita.nombreMascota}</td>
+                <td class="tabla-datos__celda">${cita.servicio}</td>
+                <td class="tabla-datos__celda">${cita.doctor}</td>
+                <td class="tabla-datos__celda">${formatearFechaHora(cita.fecha)}</td>
+                <td class="tabla-datos__celda"><strong>Bs. ${cita.precio}</strong></td>
+                <td class="tabla-datos__celda"><span class="tabla-datos__estado ${modificadorEstado}">${cita.estado}</span></td>
+                <td class="tabla-datos__celda">${botones}</td>
             `;
-            tableBody.appendChild(tr);
+            cuerpoTabla.appendChild(fila);
         });
     }
 
     window.hmAtender = (id) => {
-        appointments = appointments.map(a => a.id === id ? { ...a, status: 'Atendida' } : a);
-        localStorage.setItem('hm_appointments', JSON.stringify(appointments));
-        renderTable();
+        citas = citas.map(cita => cita.id === id ? { ...cita, estado: 'Atendida' } : cita);
+        localStorage.setItem('hm_appointments', JSON.stringify(citas));
+        renderizarTabla();
     };
 
     window.hmEliminar = (id) => {
-        appointments = appointments.filter(a => a.id !== id);
-        localStorage.setItem('hm_appointments', JSON.stringify(appointments));
-        renderTable();
+        citas = citas.filter(cita => cita.id !== id);
+        localStorage.setItem('hm_appointments', JSON.stringify(citas));
+        renderizarTabla();
     };
 
-    const tabLogin = document.getElementById('hmTabLogin');
-    const tabReg = document.getElementById('hmTabReg');
-    const loginForm = document.getElementById('hmLoginForm');
-    const regForm = document.getElementById('hmRegForm');
+    const pestanaLogin = document.getElementById('hmTabLogin');
+    const pestanaRegistro = document.getElementById('hmTabReg');
+    const formularioLogin = document.getElementById('hmLoginForm');
+    const formularioRegistro = document.getElementById('hmRegForm');
 
-    if (tabLogin && tabReg && loginForm && regForm) {
-        tabLogin.addEventListener('click', () => {
-            tabLogin.classList.add('modal__tab--active');
-            tabReg.classList.remove('modal__tab--active');
-            loginForm.classList.remove('form--hidden');
-            regForm.classList.add('form--hidden');
+    if (pestanaLogin && pestanaRegistro && formularioLogin && formularioRegistro) {
+        pestanaLogin.addEventListener('click', () => {
+            pestanaLogin.classList.add('ventana__pestana--activa');
+            pestanaRegistro.classList.remove('ventana__pestana--activa');
+            formularioLogin.classList.remove('formulario--oculto');
+            formularioRegistro.classList.add('formulario--oculto');
         });
 
-        tabReg.addEventListener('click', () => {
-            tabReg.classList.add('modal__tab--active');
-            tabLogin.classList.remove('modal__tab--active');
-            regForm.classList.remove('form--hidden');
-            loginForm.classList.add('form--hidden');
-        });
-    }
-
-    const closeAuthBtn = document.getElementById('hmCloseAuth');
-    const closeBookingBtn = document.getElementById('hmCloseBooking');
-
-    if (closeAuthBtn) closeAuthBtn.addEventListener('click', () => closeModal(authModal));
-    if (closeBookingBtn) closeBookingBtn.addEventListener('click', () => closeModal(bookingModal));
-
-    if (authModal) {
-        authModal.addEventListener('click', (e) => {
-            if (e.target === authModal) closeModal(authModal);
+        pestanaRegistro.addEventListener('click', () => {
+            pestanaRegistro.classList.add('ventana__pestana--activa');
+            pestanaLogin.classList.remove('ventana__pestana--activa');
+            formularioRegistro.classList.remove('formulario--oculto');
+            formularioLogin.classList.add('formulario--oculto');
         });
     }
 
-    if (bookingModal) {
-        bookingModal.addEventListener('click', (e) => {
-            if (e.target === bookingModal) closeModal(bookingModal);
+    const botonCerrarAcceso = document.getElementById('hmCloseAuth');
+    const botonCerrarCita = document.getElementById('hmCloseBooking');
+
+    if (botonCerrarAcceso) botonCerrarAcceso.addEventListener('click', () => cerrarVentana(ventanaAcceso));
+    if (botonCerrarCita) botonCerrarCita.addEventListener('click', () => cerrarVentana(ventanaCita));
+
+    if (ventanaAcceso) {
+        ventanaAcceso.addEventListener('click', (evento) => {
+            if (evento.target === ventanaAcceso) cerrarVentana(ventanaAcceso);
         });
     }
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('hmLoginEmail').value.trim();
-            const pass = document.getElementById('hmLoginPass').value.trim();
-            const user = users.find(u => u.email === email && u.password === pass);
-            if (user) {
-                currentUser = user;
-                localStorage.setItem('hm_currentUser', JSON.stringify(currentUser));
-                closeModal(authModal);
-                loginForm.reset();
-                renderSessionAndDashboard();
+    if (ventanaCita) {
+        ventanaCita.addEventListener('click', (evento) => {
+            if (evento.target === ventanaCita) cerrarVentana(ventanaCita);
+        });
+    }
+
+    if (formularioLogin) {
+        formularioLogin.addEventListener('submit', (evento) => {
+            evento.preventDefault();
+            const correo = document.getElementById('hmLoginEmail').value.trim();
+            const contrasena = document.getElementById('hmLoginPass').value.trim();
+            const usuarioEncontrado = usuarios.find(u => u.correo === correo && u.contrasena === contrasena);
+            if (usuarioEncontrado) {
+                usuarioActual = usuarioEncontrado;
+                localStorage.setItem('hm_currentUser', JSON.stringify(usuarioActual));
+                cerrarVentana(ventanaAcceso);
+                formularioLogin.reset();
+                renderizarSesionYPanel();
             } else {
                 alert('Correo o contraseña incorrectos.');
             }
         });
     }
 
-    if (regForm) {
-        regForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('hmRegName').value.trim();
-            const email = document.getElementById('hmRegEmail').value.trim();
-            const pass = document.getElementById('hmRegPass').value.trim();
-            if (users.some(u => u.email === email)) {
+    if (formularioRegistro) {
+        formularioRegistro.addEventListener('submit', (evento) => {
+            evento.preventDefault();
+            const nombre = document.getElementById('hmRegName').value.trim();
+            const correo = document.getElementById('hmRegEmail').value.trim();
+            const contrasena = document.getElementById('hmRegPass').value.trim();
+            if (usuarios.some(u => u.correo === correo)) {
                 alert('Ese correo ya está registrado.');
                 return;
             }
-            const nuevo = { name, email, password: pass, role: 'user' };
-            users.push(nuevo);
-            localStorage.setItem('hm_users', JSON.stringify(users));
-            currentUser = nuevo;
-            localStorage.setItem('hm_currentUser', JSON.stringify(currentUser));
-            closeModal(authModal);
-            regForm.reset();
-            renderSessionAndDashboard();
+            const nuevoUsuario = { nombre, correo, contrasena, rol: 'user' };
+            usuarios.push(nuevoUsuario);
+            localStorage.setItem('hm_users', JSON.stringify(usuarios));
+            usuarioActual = nuevoUsuario;
+            localStorage.setItem('hm_currentUser', JSON.stringify(usuarioActual));
+            cerrarVentana(ventanaAcceso);
+            formularioRegistro.reset();
+            renderizarSesionYPanel();
         });
     }
 
-    // Asignar fecha y hora por defecto al abrir el modal de cita
-    const dateInputEl = document.getElementById('hmDate');
-    function setDefaultDateTime() {
-        if (!dateInputEl) return;
-        const now = new Date();
-        now.setHours(now.getHours() + 1, 0, 0, 0);
-        const yyyy = now.getFullYear();
-        const mm = String(now.getMonth() + 1).padStart(2, '0');
-        const dd = String(now.getDate()).padStart(2, '0');
-        const hh = String(now.getHours()).padStart(2, '0');
-        const min = String(now.getMinutes()).padStart(2, '0');
-        dateInputEl.value = `${yyyy}-${mm}-${dd}T${hh}:${min}`;
+    const entradaFecha = document.getElementById('hmDate');
+    function asignarFechaHoraPorDefecto() {
+        if (!entradaFecha) return;
+        const ahora = new Date();
+        ahora.setHours(ahora.getHours() + 1, 0, 0, 0);
+        const anio = ahora.getFullYear();
+        const mes = String(ahora.getMonth() + 1).padStart(2, '0');
+        const dia = String(ahora.getDate()).padStart(2, '0');
+        const hora = String(ahora.getHours()).padStart(2, '0');
+        const minutos = String(ahora.getMinutes()).padStart(2, '0');
+        entradaFecha.value = `${anio}-${mes}-${dia}T${hora}:${minutos}`;
     }
 
-    // Botones Agendar Cita: abren el modal directo y si no hay sesión usan Invitado automáticamente
-    const btnAgendars = document.querySelectorAll('#btnAgendarHeader, #btnAgendarHero, #btnAgendarFooter, #hmBtnNewBooking');
-    btnAgendars.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (!currentUser) {
-                currentUser = { ...GUEST_USER };
-                localStorage.setItem('hm_currentUser', JSON.stringify(currentUser));
-                renderSessionAndDashboard();
+    const botonesAgendar = document.querySelectorAll('#btnAgendarHeader, #btnAgendarHero, #btnAgendarFooter, #hmBtnNewBooking');
+    botonesAgendar.forEach(boton => {
+        boton.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            if (!usuarioActual) {
+                usuarioActual = { ...USUARIO_INVITADO };
+                localStorage.setItem('hm_currentUser', JSON.stringify(usuarioActual));
+                renderizarSesionYPanel();
             }
-            setDefaultDateTime();
-            openModal(bookingModal);
+            asignarFechaHoraPorDefecto();
+            abrirVentana(ventanaCita);
         });
     });
 
-    const serviceEl = document.getElementById('hmService');
-    const paymentEl = document.getElementById('hmPayment');
-    const qrPreview = document.getElementById('hmQrPreview');
-    const qrText = document.getElementById('hmQrText');
+    const selectorServicio = document.getElementById('hmService');
+    const selectorPago = document.getElementById('hmPayment');
+    const vistaPreviaQr = document.getElementById('hmQrPreview');
+    const textoQr = document.getElementById('hmQrText');
 
-    function syncQr() {
-        if (!serviceEl || !paymentEl || !qrPreview || !qrText) return;
-        const price = serviceEl.options[serviceEl.selectedIndex].dataset.price;
-        qrText.textContent = `Monto: Bs. ${price}`;
-        qrPreview.classList.toggle('qr-box--hidden', !paymentEl.value.includes('QR'));
+    function sincronizarQr() {
+        if (!selectorServicio || !selectorPago || !vistaPreviaQr || !textoQr) return;
+        const precio = selectorServicio.options[selectorServicio.selectedIndex].dataset.price;
+        textoQr.textContent = `Monto: Bs. ${precio}`;
+        vistaPreviaQr.classList.toggle('caja-qr--oculta', !selectorPago.value.includes('QR'));
     }
 
-    if (serviceEl) serviceEl.addEventListener('change', syncQr);
-    if (paymentEl) paymentEl.addEventListener('change', syncQr);
+    if (selectorServicio) selectorServicio.addEventListener('change', sincronizarQr);
+    if (selectorPago) selectorPago.addEventListener('change', sincronizarQr);
 
-    const bookingForm = document.getElementById('hmBookingForm');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (!currentUser) {
-                currentUser = { ...GUEST_USER };
-                localStorage.setItem('hm_currentUser', JSON.stringify(currentUser));
+    const formularioCita = document.getElementById('hmBookingForm');
+    if (formularioCita) {
+        formularioCita.addEventListener('submit', (evento) => {
+            evento.preventDefault();
+            if (!usuarioActual) {
+                usuarioActual = { ...USUARIO_INVITADO };
+                localStorage.setItem('hm_currentUser', JSON.stringify(usuarioActual));
             }
-            const opt = serviceEl.options[serviceEl.selectedIndex];
-            const dateVal = dateInputEl ? dateInputEl.value : '';
+            const opcionSeleccionada = selectorServicio.options[selectorServicio.selectedIndex];
+            const valorFecha = entradaFecha ? entradaFecha.value : '';
             const nuevaCita = {
                 id: Date.now(),
-                userEmail: currentUser.email,
-                userName: currentUser.name,
-                petName: `${document.getElementById('hmPetName').value} (${document.getElementById('hmPetType').value})`,
-                service: serviceEl.value,
-                price: Number(opt.dataset.price),
+                correoUsuario: usuarioActual.correo,
+                nombreUsuario: usuarioActual.nombre,
+                nombreMascota: `${document.getElementById('hmPetName').value} (${document.getElementById('hmPetType').value})`,
+                servicio: selectorServicio.value,
+                precio: Number(opcionSeleccionada.dataset.price),
                 doctor: document.getElementById('hmDoctor').value,
-                date: dateVal,
-                payment: paymentEl.value,
-                status: 'Pendiente'
+                fecha: valorFecha,
+                pago: selectorPago.value,
+                estado: 'Pendiente'
             };
-            appointments.push(nuevaCita);
-            localStorage.setItem('hm_appointments', JSON.stringify(appointments));
-            closeModal(bookingModal);
-            bookingForm.reset();
-            syncQr();
-            renderSessionAndDashboard();
-            if (dashboardSection) {
-                dashboardSection.scrollIntoView({ behavior: 'smooth' });
+            citas.push(nuevaCita);
+            localStorage.setItem('hm_appointments', JSON.stringify(citas));
+            cerrarVentana(ventanaCita);
+            formularioCita.reset();
+            sincronizarQr();
+            renderizarSesionYPanel();
+            if (seccionPanel) {
+                seccionPanel.scrollIntoView({ behavior: 'smooth' });
             }
-            alert(`Cita agendada para ${formatDateTime(dateVal)} por Bs. ${nuevaCita.price}.`);
+            alert(`Cita agendada para ${formatearFechaHora(valorFecha)} por Bs. ${nuevaCita.precio}.`);
         });
     }
 
-    // Menú interactivo: cambia el verde al enlace presionado y al hacer scroll
-    const navLinks = document.querySelectorAll('.header__link');
-    let manualSelection = false;
+    const enlacesNavegacion = document.querySelectorAll('.encabezado__enlace');
+    let seleccionManual = false;
 
-    function setActiveLink(targetLink) {
-        navLinks.forEach(item => item.classList.remove('header__link--active'));
-        if (targetLink) {
-            targetLink.classList.add('header__link--active');
+    function establecerEnlaceActivo(enlaceDestino) {
+        enlacesNavegacion.forEach(item => item.classList.remove('encabezado__enlace--activo'));
+        if (enlaceDestino) {
+            enlaceDestino.classList.add('encabezado__enlace--activo');
         }
     }
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            manualSelection = true;
-            setActiveLink(this);
+    enlacesNavegacion.forEach(enlace => {
+        enlace.addEventListener('click', function () {
+            seleccionManual = true;
+            establecerEnlaceActivo(this);
             setTimeout(() => {
-                manualSelection = false;
+                seleccionManual = false;
             }, 700);
         });
     });
 
     window.addEventListener('scroll', () => {
-        if (manualSelection) return;
-        const scrollPos = window.scrollY + 140;
-        let currentActive = navLinks[0];
+        if (seleccionManual) return;
+        const posicionDesplazamiento = window.scrollY + 140;
+        let enlaceActivoActual = enlacesNavegacion[0];
 
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                const section = document.querySelector(href);
-                if (section && section.offsetTop <= scrollPos) {
-                    currentActive = link;
+        enlacesNavegacion.forEach(enlace => {
+            const destino = enlace.getAttribute('href');
+            if (destino && destino.startsWith('#')) {
+                const seccion = document.querySelector(destino);
+                if (seccion && seccion.offsetTop <= posicionDesplazamiento) {
+                    enlaceActivoActual = enlace;
                 }
             }
         });
 
-        setActiveLink(currentActive);
+        establecerEnlaceActivo(enlaceActivoActual);
     });
 
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+    const formularioContacto = document.getElementById('contactForm');
+    if (formularioContacto) {
+        formularioContacto.addEventListener('submit', (evento) => {
+            evento.preventDefault();
             alert('¡Mensaje enviado con éxito! Te responderemos en menos de 24 horas. 🦁');
-            contactForm.reset();
+            formularioContacto.reset();
         });
     }
 
-    renderSessionAndDashboard();
-    syncQr();
+    renderizarSesionYPanel();
+    sincronizarQr();
 });
