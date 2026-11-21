@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakuna Matata - Clínica Veterinaria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page">
+
+    <header class="header">
+        <div class="header__container">
+            <div class="header__brand">
+                <div class="header__icon">🦁</div>
+                <div>
+                    <h1 class="header__title">Hakuna Matata</h1>
+                    <p class="header__tagline">¡El reino del cuidado animal!</p>
+                </div>
+            </div>
+
+            <nav class="header__nav">
+                <ul class="header__list">
+                    <li class="header__item"><a href="#inicio" class="header__link header__link--active">Inicio</a></li>
+                    <li class="header__item"><a href="#servicios" class="header__link">Servicios</a></li>
+                    <li class="header__item"><a href="#doctores" class="header__link">Doctores</a></li>
+                    <li class="header__item"><a href="#testimonios" class="header__link">Testimonios</a></li>
+                    <li class="header__item"><a href="#contacto" class="header__link">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header__actions">
+                <span class="header__currency">Moneda: <strong>Bs.</strong></span>
+                <div id="hmSessionArea" class="header__session"></div>
+                <button type="button" id="btnAgendarHeader" class="btn btn--primary">Agendar Cita &rarr;</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="hmDashboard" class="dashboard dashboard--hidden">
+        <div class="dashboard__card">
+            <div class="dashboard__header">
+                <div>
+                    <span id="hmRoleTag" class="dashboard__tag">ROL</span>
+                    <h2 id="hmDashTitle" class="dashboard__title">Panel de Control</h2>
+                    <p id="hmDashSub" class="dashboard__subtitle"></p>
+                </div>
+                <button type="button" id="hmBtnNewBooking" class="btn btn--primary">+ Agendar Cita (Bs.)</button>
+            </div>
+
+            <div id="hmAdminMetrics" class="dashboard__metrics dashboard__metrics--hidden">
+                <div class="metric-card">
+                    <span class="metric-card__label">Total de Citas</span>
+                    <h3 id="hmMetricTotal" class="metric-card__value">0</h3>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-card__label">Pendientes</span>
+                    <h3 id="hmMetricPend" class="metric-card__value">0</h3>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-card__label">Total en Bolivianos</span>
+                    <h3 id="hmMetricBs" class="metric-card__value">Bs. 0</h3>
+                </div>
+            </div>
+
+            <div class="dashboard__table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="data-table__th">Cliente</th>
+                            <th class="data-table__th">Mascota</th>
+                            <th class="data-table__th">Servicio</th>
+                            <th class="data-table__th">Veterinario</th>
+                            <th class="data-table__th">Fecha y hora</th>
+                            <th class="data-table__th">Monto</th>
+                            <th class="data-table__th">Estado</th>
+                            <th class="data-table__th">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hmTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="inicio" class="hero">
+        <div class="hero__container">
+            <div class="hero__content">
+                <span class="hero__badge">💛 CERCA DE TI. CERCA DE ELLOS.</span>
+                <h1 class="hero__title">El cuidado experto que tu mascota merece</h1>
+                <p class="hero__text">Medicina veterinaria de calidad, con el cariño de siempre. Acompañamos a tu mejor amigo en cada etapa de su vida.</p>
+
+                <div class="hero__actions">
+                    <button type="button" id="btnAgendarHero" class="btn btn--primary">Agendar Cita &rarr;</button>
+                    <a href="#servicios" class="btn btn--secondary">Conoce nuestros servicios</a>
+                </div>
+
+                <div class="hero__rating">
+                    <span class="hero__stars">⭐⭐⭐⭐⭐</span>
+                    <span>4,9/5 · Más de 500 familias felices</span>
+                </div>
+            </div>
+
+            <div class="hero__media">
+                <img src="img/hero-veterinaria.jpg" alt="Portada de la clínica veterinaria Hakuna Matata" class="hero__image">
+                <div class="hero__float-badge hero__float-badge--top">🐾 Como en casa</div>
+                <div class="hero__float-badge hero__float-badge--bottom">
+                    🛡️ En las mejores manos <br><small>Equipo veterinario certificado</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats__container">
+            <div class="stats__item">
+                <h2 class="stats__number">12+</h2>
+                <p class="stats__label">años cuidando sus huellas</p>
+            </div>
+            <div class="stats__item">
+                <h2 class="stats__number">5.000+</h2>
+                <p class="stats__label">mascotas acompañadas</p>
+            </div>
+            <div class="stats__item">
+                <h2 class="stats__number">98%</h2>
+                <p class="stats__label">familias que nos recomiendan</p>
+            </div>
+            <div class="stats__item">
+                <h3 class="stats__number">Un equipo</h3>
+                <p class="stats__label">que los quiere como tú</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="science">
+        <div class="science__container">
+            <div class="science__media">
+                <img src="img/ciencia-clinica.jpg" alt="Atención veterinaria y bienestar animal en Hakuna Matata" class="science__image">
+            </div>
+            <div class="science__content">
+                <span class="section-heading__eyebrow">MÁS QUE UNA CLÍNICA</span>
+                <h2 class="science__title">Ciencia para su salud. Cariño para su tranquilidad.</h2>
+                <p class="science__text">Sabemos lo que significa para ti. Por eso te escuchamos, te explicamos todo claro y cuidamos cada detalle sin apuros.</p>
+
+                <ul class="science__list">
+                    <li class="science__item">
+                        <strong class="science__item-title">Atención sin estrés</strong>
+                        <p class="science__item-desc">Respetamos sus tiempos para que se sienta tranquilo.</p>
+                    </li>
+                    <li class="science__item">
+                        <strong class="science__item-title">Decisiones claras, juntos</strong>
+                        <p class="science__item-desc">Diagnósticos honestos y precios accesibles en Bolivianos (Bs.) sin sorpresas.</p>
+                    </li>
+                    <li class="science__item">
+                        <strong class="science__item-title">Siempre conectados</strong>
+                        <p class="science__item-desc">Citas, vacunas y controles al día en su historial.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="services">
+        <div class="section-heading">
+            <span class="section-heading__eyebrow">FÁCIL, DESDE EL PRIMER PASO</span>
+            <h2 class="section-heading__title">Su próxima visita, a unos clics</h2>
+        </div>
+
+        <div class="services__grid">
+            <article class="service-card">
+                <span class="service-card__step">01</span>
+                <h3 class="service-card__title">Cuéntanos sobre tu mascota</h3>
+                <p class="service-card__desc">Elige su perfil y el cuidado que necesita.</p>
+                <div class="service-card__price">Consulta General: <strong>Bs. 50</strong></div>
+            </article>
+            <article class="service-card">
+                <span class="service-card__step">02</span>
+                <h3 class="service-card__title">Elige el mejor momento</h3>
+                <p class="service-card__desc">Selecciona veterinario, fecha y hora.</p>
+                <div class="service-card__price">Vacunación: <strong>Bs. 40</strong></div>
+            </article>
+            <article class="service-card">
+                <span class="service-card__step">03</span>
+                <h3 class="service-card__title">Ven con total tranquilidad</h3>
+                <p class="service-card__desc">Recibe tu confirmación y déjanos el resto.</p>
+                <div class="service-card__price">Urgencias 24/7: <strong>Bs. 80</strong></div>
+            </article>
+        </div>
+    </section>
+
+    <section id="doctores" class="doctors">
+        <div class="section-heading">
+            <span class="section-heading__eyebrow">PERSONAS QUE CUIDAN</span>
+            <h2 class="section-heading__title">Su equipo. Tu tranquilidad.</h2>
+            <p class="section-heading__subtitle">Experiencia que da confianza y cariño que se nota en cada visita.</p>
+        </div>
+
+        <div class="doctors__grid">
+            <article class="doctor-card">
+                <img src="img/dra-elena.jpg" alt="Dra. Elena Martínez" class="doctor-card__photo">
+                <h3 class="doctor-card__name">Dra. Elena Martínez</h3>
+                <p class="doctor-card__specialty">Medicina general y preventiva</p>
+                <p class="doctor-card__experience">10 años de experiencia · Mat. 8421</p>
+                <span class="doctor-card__arrow">↗</span>
+            </article>
+            <article class="doctor-card">
+                <img src="img/dr-carlos.jpg" alt="Dr. Carlos Ruiz" class="doctor-card__photo">
+                <h3 class="doctor-card__name">Dr. Carlos Ruiz</h3>
+                <p class="doctor-card__specialty">Cirugía y diagnóstico por imagen</p>
+                <p class="doctor-card__experience">12 años de experiencia · Mat. 7650</p>
+                <span class="doctor-card__arrow">↗</span>
+            </article>
+            <article class="doctor-card">
+                <img src="img/dra-ana.jpg" alt="Dra. Ana Torres" class="doctor-card__photo">
+                <h3 class="doctor-card__name">Dra. Ana Torres</h3>
+                <p class="doctor-card__specialty">Dermatología y bienestar felino</p>
+                <p class="doctor-card__experience">8 años de experiencia · Mat. 9103</p>
+                <span class="doctor-card__arrow">↗</span>
+            </article>
+        </div>
+    </section>
+
+    <section id="testimonios" class="testimonials">
+        <div class="section-heading">
+            <span class="section-heading__eyebrow">HISTORIAS CON HUELLA</span>
+            <h2 class="section-heading__title">Lo dicen quienes más nos importan</h2>
+            <div class="testimonials__rating">★ 4,9 en Google · 500+ opiniones</div>
+        </div>
+
+        <div class="testimonials__grid">
+            <article class="testimonial-card">
+                <div class="testimonial-card__stars">★★★★★</div>
+                <p class="testimonial-card__quote">"Luna entra feliz a la clínica. Elena nos explica todo con una paciencia increíble. Saber que está en buenas manos no tiene precio."</p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">LF</div>
+                    <div>
+                        <strong class="testimonial-card__name">Lucía Fernández</strong>
+                        <small class="testimonial-card__pet">Dueña de Luna · Golden retriever</small>
+                    </div>
+                </div>
+            </article>
+            <article class="testimonial-card">
+                <div class="testimonial-card__stars">★★★★★</div>
+                <p class="testimonial-card__quote">"Nos acompañaron en la operación de Coco con una cercanía enorme. Nos mantuvieron informados en cada paso. Un equipo excelente."</p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">JM</div>
+                    <div>
+                        <strong class="testimonial-card__name">Javier Molina</strong>
+                        <small class="testimonial-card__pet">Dueño de Coco · Gato europeo</small>
+                    </div>
+                </div>
+            </article>
+            <article class="testimonial-card">
+                <div class="testimonial-card__stars">★★★★★</div>
+                <p class="testimonial-card__quote">"Por fin una clínica donde te escuchan de verdad. El control de Nala nos ayuda a no olvidar ninguna vacuna."</p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">ML</div>
+                    <div>
+                        <strong class="testimonial-card__name">María López</strong>
+                        <small class="testimonial-card__pet">Dueña de Nala · Bichón maltés</small>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <div class="contact__container">
+            <div class="contact__info">
+                <span class="section-heading__eyebrow">ESTAMOS CERCA DE TI</span>
+                <h2 class="contact__title">Ven a conocernos. Nos encantará cuidarles.</h2>
+                <p class="contact__text">Escríbenos o visítanos. Nuestro equipo te ayudará en lo que necesites.</p>
+
+                <div class="contact__item">
+                    <span>📍</span>
+                    <div>
+                        <strong class="contact__item-title">Calle 24 de Calacoto · La Paz</strong>
+                        <span class="contact__item-sub">Zona Sur · Parada principal</span>
+                    </div>
+                </div>
+                <div class="contact__item">
+                    <span>📞</span>
+                    <div>
+                        <strong class="contact__item-title">+591 62559048 · 62559048</strong>
+                        <span class="contact__item-sub">Lunes a viernes, 9:00–20:00 · Sábados, 10:00–14:00</span>
+                    </div>
+                </div>
+                <div class="contact__item">
+                    <span>✉️</span>
+                    <div>
+                        <strong class="contact__item-title">hola@hakunamatata.bo</strong>
+                        <span class="contact__item-sub">Te respondemos en menos de 24 horas</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact__card">
+                <h3 class="contact__card-title">¿En qué te podemos ayudar?</h3>
+                <form id="contactForm" class="form">
+                    <label class="form__label">Tu nombre</label>
+                    <input type="text" class="form__input" placeholder="Nombre y apellido" required>
+
+                    <label class="form__label">Correo electrónico</label>
+                    <input type="email" class="form__input" placeholder="tu@email.com" required>
+
+                    <label class="form__label">Mensaje</label>
+                    <textarea class="form__textarea" placeholder="Cuéntanos cómo te podemos ayudar..." rows="4" required></textarea>
+
+                    <div class="form__checkbox-group">
+                        <input type="checkbox" id="privacy" required>
+                        <label for="privacy" class="form__checkbox-label">Leí y acepto la política de privacidad.</label>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--full">Enviar mensaje &rarr;</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="cta-banner__container">
+            <h2 class="cta-banner__title">Su bienestar empieza con una visita.</h2>
+            <p class="cta-banner__text">Elige el día. Nosotros ponemos el cuidado.</p>
+            <button type="button" id="btnAgendarFooter" class="btn btn--primary btn--large">Agendar Cita &rarr;</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__col">
+                <div class="header__brand">
+                    <div class="header__icon">🦁</div>
+                    <div>
+                        <h1 class="footer__title">Hakuna Matata</h1>
+                        <p class="footer__tagline">Cuidamos sus huellas. Acompañamos su historia.</p>
+                    </div>
+                </div>
+                <div class="footer__socials">
+                    <span>📷</span> <span>📘</span>
+                </div>
+            </div>
+            <div class="footer__col">
+                <h4 class="footer__heading">La clínica</h4>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="#" class="footer__link">Sobre nosotros</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Nuestro equipo</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Instalaciones</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4 class="footer__heading">Te ayudamos</h4>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="#servicios" class="footer__link">Nuestros servicios</a></li>
+                    <li class="footer__item"><a href="#contacto" class="footer__link">Agendar una cita</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Consejos de salud</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Preguntas frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4 class="footer__heading">Siempre cerca</h4>
+                <p class="footer__text">Calle 24 de Calacoto, La Paz</p>
+                <p class="footer__text">+591 62559048 · 62559048</p>
+                <p class="footer__text">hola@hakunamatata.bo</p>
+                <p class="footer__text">L–V 9:00–20:00 · S 10:00–14:00</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="hmAuthModal" class="modal modal--hidden">
+        <div class="modal__dialog">
+            <button type="button" id="hmCloseAuth" class="modal__close">&times;</button>
+            <div class="modal__tabs">
+                <button type="button" id="hmTabLogin" class="modal__tab modal__tab--active">Iniciar Sesión</button>
+                <button type="button" id="hmTabReg" class="modal__tab">Registrarse</button>
+            </div>
+
+            <form id="hmLoginForm" class="form">
+                <h3 class="modal__title">Acceso Hakuna Matata 🦁</h3>
+                <p class="modal__hint">Admin demo: <strong>admin@hakunamatata.bo</strong> / Pass: <strong>admin123</strong></p>
+                <label class="form__label">Correo electrónico</label>
+                <input type="email" id="hmLoginEmail" class="form__input" placeholder="correo@ejemplo.com" required>
+                <label class="form__label">Contraseña</label>
+                <input type="password" id="hmLoginPass" class="form__input" placeholder="••••••••" required>
+                <button type="submit" class="btn btn--primary btn--full modal__submit">Entrar</button>
+            </form>
+
+            <form id="hmRegForm" class="form form--hidden">
+                <h3 class="modal__title">Registro de Usuario 🐾</h3>
+                <p class="modal__hint">Crea tu cuenta para agendar citas y ver el estado de tus mascotas.</p>
+                <label class="form__label">Nombre completo</label>
+                <input type="text" id="hmRegName" class="form__input" placeholder="Tu nombre y apellido" required>
+                <label class="form__label">Correo electrónico</label>
+                <input type="email" id="hmRegEmail" class="form__input" placeholder="correo@ejemplo.com" required>
+                <label class="form__label">Contraseña</label>
+                <input type="password" id="hmRegPass" class="form__input" placeholder="Crea una contraseña" required>
+                <button type="submit" class="btn btn--primary btn--full modal__submit">Registrarme</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="hmBookingModal" class="modal modal--hidden">
+        <div class="modal__dialog">
+            <button type="button" id="hmCloseBooking" class="modal__close">&times;</button>
+            <h3 class="modal__title">Agendar Cita en Bolivianos (Bs.)</h3>
+            <form id="hmBookingForm" class="form">
+                <label class="form__label">Nombre de tu mascota</label>
+                <input type="text" id="hmPetName" class="form__input" placeholder="Ej. Simba, Luna, Nala" required>
+
+                <label class="form__label">Tipo de mascota</label>
+                <select id="hmPetType" class="form__select">
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Otro">Otro</option>
+                </select>
+
+                <label class="form__label">Servicio</label>
+                <select id="hmService" class="form__select">
+                    <option value="Consulta General" data-price="50">Consulta General — Bs. 50</option>
+                    <option value="Vacunación" data-price="40">Vacunación — Bs. 40</option>
+                    <option value="Urgencias 24/7" data-price="80">Urgencias 24/7 — Bs. 80</option>
+                </select>
+
+                <label class="form__label">Veterinario</label>
+                <select id="hmDoctor" class="form__select">
+                    <option value="Dra. Elena Martínez">Dra. Elena Martínez</option>
+                    <option value="Dr. Carlos Ruiz">Dr. Carlos Ruiz</option>
+                    <option value="Dra. Ana Torres">Dra. Ana Torres</option>
+                </select>
+
+                <label class="form__label">Fecha y hora</label>
+                <input type="datetime-local" id="hmDate" class="form__input" required>
+
+                <label class="form__label">Método de pago</label>
+                <select id="hmPayment" class="form__select">
+                    <option value="QR Simple (Bs.)">QR Simple (Bs.)</option>
+                    <option value="Efectivo / Tarjeta (Bs.)">Efectivo o tarjeta en clínica (Bs.)</option>
+                </select>
+
+                <div id="hmQrPreview" class="qr-box">
+                    <div class="qr-box__code">QR<br>Bs.</div>
+                    <div>
+                        <strong class="qr-box__title">Pago rápido en Bolivianos</strong>
+                        <p id="hmQrText" class="qr-box__amount">Monto: Bs. 50</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--full modal__submit">Confirmar
