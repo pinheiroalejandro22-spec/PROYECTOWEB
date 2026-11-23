@@ -1,0 +1,107 @@
+/* Bloque: encabezado */
+.encabezado {
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #EDF2F7;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.encabezado__contenedor {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.encabezado__marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.encabezado__icono {
+    font-size: 28px;
+    background-color: var(--verde-selva);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.encabezado__titulo {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--azul-ocre);
+}
+
+.encabezado__lema {
+    font-size: 11px;
+    color: #718096;
+}
+
+.encabezado__lista {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+}
+
+.encabezado__enlace {
+    text-decoration: none;
+    color: #4A5568;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+.encabezado__enlace:hover,
+.encabezado__enlace--activo {
+    color: var(--verde-selva);
+}
+
+.encabezado__acciones {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.encabezado__moneda {
+    background-color: #EDF2F7;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.encabezado__sesion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.encabezado__insignia-usuario {
+    background-color: #E6FFFA;
+    color: #234E52;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .encabezado__contenedor {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+
+    .encabezado__lista {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+}

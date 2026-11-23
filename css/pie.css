@@ -1,0 +1,70 @@
+/* Bloque: pie */
+.pie {
+    background-color: #1A202C;
+    color: #FFFFFF;
+    padding: 60px 40px;
+}
+
+.pie__contenedor {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+}
+
+.pie__titulo {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.pie__lema {
+    font-size: 11px;
+    color: #A0AEC0;
+}
+
+.pie__encabezado {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #E2E8F0;
+}
+
+.pie__lista {
+    list-style: none;
+}
+
+.pie__item {
+    margin-bottom: 10px;
+}
+
+.pie__enlace {
+    text-decoration: none;
+    color: #A0AEC0;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.pie__enlace:hover {
+    color: #FFFFFF;
+}
+
+.pie__texto {
+    font-size: 13px;
+    color: #A0AEC0;
+    margin-bottom: 8px;
+}
+
+.pie__redes {
+    margin-top: 20px;
+    font-size: 20px;
+    display: flex;
+    gap: 15px;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .pie__contenedor {
+        grid-template-columns: 1fr;
+    }
+}
