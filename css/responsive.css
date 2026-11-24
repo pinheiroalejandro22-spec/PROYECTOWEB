@@ -1,0 +1,37 @@
+@media (max-width: 900px) {
+    .encabezado__contenedor {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+
+    .encabezado__lista {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .panel {
+        padding: 0 20px;
+    }
+
+    .panel__metricas {
+        grid-template-columns: 1fr;
+    }
+
+    .portada__contenedor,
+    .ciencia__contenedor,
+    .servicios__cuadricula,
+    .doctores__cuadricula,
+    .testimonios__cuadricula,
+    .contacto__contenedor,
+    .estadisticas__contenedor {
+        grid-template-columns: 1fr;
+    }
+
+    .ciencia__contenedor {
+        padding: 30px;
+    }
+
+    .pie__contenedor {
+        grid-template-columns: 1fr;
+    }
+}
