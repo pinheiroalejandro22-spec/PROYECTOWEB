@@ -1,0 +1,162 @@
+/* Bloque: encabezado */
+.encabezado {
+    /* Fondo blanco sólido */
+    background-color: #FFFFFF;
+    /* Línea inferior divisoria suave */
+    border-bottom: 2px solid #EDF2F7;
+    /* Fija la cabecera en la parte superior al hacer scroll */
+    position: sticky;
+    /* Posición pegada a 0px del borde superior */
+    top: 0;
+    /* Nivel de apilamiento sobre el contenido de la página */
+    z-index: 1000;
+}
+
+/* Contenedor interno alineado en fila con Flexbox */
+.encabezado__contenedor {
+    /* Ancho máximo en pantallas grandes */
+    max-width: 1440px;
+    /* Centra horizontalmente */
+    margin: 0 auto;
+    /* Espaciado interno vertical y horizontal */
+    padding: 15px 40px;
+    /* Activa Flexbox */
+    display: flex;
+    /* Centra verticalmente */
+    align-items: center;
+    /* Separa marca, navegación y acciones a los extremos */
+    justify-content: space-between;
+    /* Separación mínima entre grupos */
+    gap: 16px;
+}
+
+/* Contenedor de ícono, título y lema de la clínica */
+.encabezado__marca {
+    /* Disposición horizontal */
+    display: flex;
+    /* Centra verticalmente */
+    align-items: center;
+    /* Espacio entre ícono y texto */
+    gap: 12px;
+}
+
+/* Recuadro del ícono de marca */
+.encabezado__icono {
+    /* Tamaño del emoji/ícono */
+    font-size: 28px;
+    /* Fondo verde de marca */
+    background-color: var(--verde-selva);
+    /* Ancho fijo */
+    width: 48px;
+    /* Alto fijo */
+    height: 48px;
+    /* Flexbox para centrar el ícono */
+    display: flex;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    /* Esquinas redondeadas */
+    border-radius: 12px;
+    /* Evita que el ícono se aplaste si falta espacio */
+    flex-shrink: 0;
+}
+
+/* Título principal en el header */
+.encabezado__titulo {
+    /* Tamaño de fuente */
+    font-size: 20px;
+    /* Peso negrita */
+    font-weight: 700;
+    /* Color corporativo azul oscuro */
+    color: var(--azul-ocre);
+}
+
+/* Eslogan pequeño bajo el título */
+.encabezado__lema {
+    /* Tamaño pequeño */
+    font-size: 11px;
+    /* Gris medio */
+    color: #718096;
+}
+
+/* Lista horizontal de enlaces del menú */
+.encabezado__lista {
+    /* Quita viñetas */
+    list-style: none;
+    /* Coloca los ítems en fila */
+    display: flex;
+    /* Espacio entre enlaces */
+    gap: 28px;
+}
+
+/* Enlaces de navegación */
+.encabezado__enlace {
+    /* Sin subrayado */
+    text-decoration: none;
+    /* Gris oscuro legible */
+    color: #4A5568;
+    /* Grosor medio */
+    font-weight: 500;
+    /* Tamaño de texto */
+    font-size: 15px;
+    /* Transición suave de color */
+    transition: color 0.2s;
+}
+
+/* Estado hover y enlace activo */
+.encabezado__enlace:hover,
+.encabezado__enlace--activo {
+    /* Resalta con el color verde selva */
+    color: var(--verde-selva);
+}
+
+/* Contenedor de moneda, sesión y botón agendar */
+.encabezado__acciones {
+    /* Fila horizontal */
+    display: flex;
+    /* Centrado vertical */
+    align-items: center;
+    /* Separación entre controles */
+    gap: 12px;
+    /* Permite salto de línea en espacios reducidos */
+    flex-wrap: wrap;
+}
+
+/* Etiqueta indicadora de moneda (Bs.) */
+.encabezado__moneda {
+    /* Fondo gris muy claro */
+    background-color: #EDF2F7;
+    /* Relleno interno */
+    padding: 6px 12px;
+    /* Esquinas redondeadas */
+    border-radius: 8px;
+    /* Tamaño compacto */
+    font-size: 13px;
+}
+
+/* Contenedor de controles de sesión montados por JS */
+.encabezado__sesion {
+    /* Fila horizontal */
+    display: flex;
+    /* Centrado vertical */
+    align-items: center;
+    /* Espacio interno entre elementos */
+    gap: 8px;
+}
+
+/* Insignia que muestra el usuario o rol autenticado */
+.encabezado__insignia-usuario {
+    /* Fondo verde agua claro */
+    background-color: #E6FFFA;
+    /* Texto verde oscuro */
+    color: #234E52;
+    /* Relleno interno */
+    padding: 6px 12px;
+    /* Bordes redondeados */
+    border-radius: 8px;
+    /* Tamaño de texto */
+    font-size: 13px;
+    /* Grosor seminegrita */
+    font-weight: 600;
+}

@@ -1,0 +1,12 @@
+/* Importa las variables globales de color del tema */
+@import "./variables.css";
+/* Importa el reinicio de márgenes, rellenos y estilos base */
+@import "./reset.css";
+/* Importa los estilos de la barra superior y navegación */
+@import "./header.css";
+/* Importa los estilos de secciones, tarjetas, tablas y modales */
+@import "./secciones.css";
+/* Importa los estilos del pie de página */
+@import "./footer.css";
+/* Importa las reglas adaptativas para pantallas menores a 900px */
+@import "./responsive.css";

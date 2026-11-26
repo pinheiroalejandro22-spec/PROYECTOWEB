@@ -1,0 +1,15 @@
+/* Define variables CSS globales en la raíz del documento (:root) */
+:root {
+    /* Color verde principal de marca (botones positivos, precios, checks) */
+    --verde-selva: #48BB78;
+    /* Color azul oscuro corporativo (títulos, encabezados y contrastes fuertes) */
+    --azul-ocre: #1A365D;
+    /* Color marrón tierra (texto de estado pendiente) */
+    --marron-tierra: #744210;
+    /* Color amarillo cálido disponible en la paleta */
+    --amarillo-amanecer: #ECC94B;
+    /* Fondo general claro de la aplicación */
+    --fondo-claro: #F7FAFC;
+    /* Color base del texto principal */
+    --texto-oscuro: #2D3748;
+}

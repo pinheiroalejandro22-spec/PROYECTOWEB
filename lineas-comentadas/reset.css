@@ -1,0 +1,23 @@
+/* Selector universal para aplicar a todos los elementos del documento */
+*,
+*::before,
+*::after {
+    /* Elimina márgenes externos por defecto */
+    margin: 0;
+    /* Elimina rellenos internos por defecto */
+    padding: 0;
+    /* Incluye padding y border dentro del ancho y alto total */
+    box-sizing: border-box;
+}
+
+/* Estilos globales del cuerpo de la página */
+.pagina {
+    /* Fuente principal Poppins con respaldo sans-serif */
+    font-family: 'Poppins', sans-serif;
+    /* Color de fondo general desde variable CSS */
+    background-color: var(--fondo-claro);
+    /* Color de texto base desde variable CSS */
+    color: var(--texto-oscuro);
+    /* Desplazamiento suave al saltar a enlaces internos (#id) */
+    scroll-behavior: smooth;
+}

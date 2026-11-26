@@ -1,0 +1,1378 @@
+/* Bloque: boton (clase base compartida) */
+.boton {
+    /* Sin borde predeterminado */
+    border: none;
+    /* Bordes redondeados */
+    border-radius: 10px;
+    /* Tipografía Poppins */
+    font-family: 'Poppins', sans-serif;
+    /* Peso seminegrita */
+    font-weight: 600;
+    /* Cursor de mano interactivo */
+    cursor: pointer;
+    /* Sin subrayado si se usa en etiquetas <a> */
+    text-decoration: none;
+    /* Flex en línea para centrar ícono y texto */
+    display: inline-flex;
+    /* Centrado vertical */
+    align-items: center;
+    /* Centrado horizontal */
+    justify-content: center;
+    /* Transición suave en color y desplazamiento */
+    transition: background-color 0.2s, transform 0.1s, color 0.2s;
+}
+
+/* Variante principal de botón */
+.boton--primario {
+    /* Fondo azul oscuro */
+    background-color: var(--azul-ocre);
+    /* Texto blanco */
+    color: #FFFFFF;
+    /* Relleno vertical y horizontal */
+    padding: 10px 22px;
+}
+
+/* Hover del botón primario */
+.boton--primario:hover {
+    /* Tono azul más claro al pasar el cursor */
+    background-color: #2C5282;
+    /* Ligero desplazamiento hacia arriba */
+    transform: translateY(-1px);
+}
+
+/* Variante secundaria discreta */
+.boton--secundario {
+    /* Fondo transparente */
+    background-color: transparent;
+    /* Texto azul oscuro */
+    color: var(--azul-ocre);
+    /* Relleno interno */
+    padding: 10px 20px;
+}
+
+/* Variante delineada (outline) */
+.boton--contorno {
+    /* Fondo transparente */
+    background-color: transparent;
+    /* Texto azul oscuro */
+    color: var(--azul-ocre);
+    /* Borde sólido */
+    border: 1.5px solid var(--azul-ocre);
+    /* Relleno compacto */
+    padding: 8px 14px;
+    /* Tamaño de texto */
+    font-size: 13px;
+}
+
+/* Hover del botón con contorno */
+.boton--contorno:hover {
+    /* Rellena con azul oscuro */
+    background-color: var(--azul-ocre);
+    /* Cambia texto a blanco */
+    color: #FFFFFF;
+}
+
+/* Modificador de ancho completo */
+.boton--ancho-completo {
+    /* Ocupa el 100% del contenedor */
+    width: 100%;
+}
+
+/* Modificador de tamaño grande */
+.boton--grande {
+    /* Texto mayor */
+    font-size: 16px;
+    /* Mayor relleno */
+    padding: 12px 30px;
+}
+
+/* Bloque: encabezado-seccion */
+.encabezado-seccion {
+    /* Centra el texto */
+    text-align: center;
+    /* Margen inferior hacia el contenido */
+    margin-bottom: 50px;
+}
+
+/* Antetítulo superior de sección */
+.encabezado-seccion__subtitulo-superior {
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Peso negrita */
+    font-weight: 700;
+    /* Color verde azulado */
+    color: #319795;
+    /* Espaciado entre letras */
+    letter-spacing: 1px;
+    /* Bloque para respetar márgenes */
+    display: block;
+    /* Margen inferior */
+    margin-bottom: 10px;
+}
+
+/* Título principal de cada sección */
+.encabezado-seccion__titulo {
+    /* Tamaño grande */
+    font-size: 36px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+}
+
+/* Descripción bajo el título de sección */
+.encabezado-seccion__descripcion {
+    /* Color gris */
+    color: #718096;
+    /* Margen superior */
+    margin-top: 8px;
+}
+
+/* Bloque: panel (Dashboard de citas) */
+.panel {
+    /* Ancho máximo */
+    max-width: 1440px;
+    /* Centrado horizontal y margen vertical */
+    margin: 30px auto;
+    /* Relleno lateral */
+    padding: 0 40px;
+}
+
+/* Oculta el panel cuando no hay sesión */
+.panel--oculto {
+    /* Oculto en el flujo */
+    display: none;
+}
+
+/* Tarjeta contenedora del panel */
+.panel__tarjeta {
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Borde gris claro */
+    border: 2px solid #E2E8F0;
+    /* Esquinas redondeadas */
+    border-radius: 24px;
+    /* Relleno interno */
+    padding: 32px;
+    /* Sombra suave */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Cabecera interna del panel */
+.panel__encabezado {
+    /* Flexbox horizontal */
+    display: flex;
+    /* Separa extremos */
+    justify-content: space-between;
+    /* Centra verticalmente */
+    align-items: center;
+    /* Permite envolver en líneas */
+    flex-wrap: wrap;
+    /* Espacio entre elementos */
+    gap: 16px;
+    /* Margen inferior */
+    margin-bottom: 24px;
+}
+
+/* Etiqueta de rol dentro del panel */
+.panel__etiqueta {
+    /* Fondo verde agua claro */
+    background-color: #E6FFFA;
+    /* Texto verde oscuro */
+    color: #234E52;
+    /* Relleno tipo píldora */
+    padding: 5px 12px;
+    /* Bordes redondeados */
+    border-radius: 20px;
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Grosor seminegrita */
+    font-weight: 600;
+    /* Bloque en línea */
+    display: inline-block;
+    /* Margen inferior */
+    margin-bottom: 8px;
+}
+
+/* Título del panel */
+.panel__titulo {
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Tamaño de título */
+    font-size: 26px;
+}
+
+/* Subtítulo del panel */
+.panel__subtitulo {
+    /* Color gris */
+    color: #718096;
+    /* Tamaño de texto */
+    font-size: 14px;
+}
+
+/* Cuadrícula de 3 métricas */
+.panel__metricas {
+    /* Activa CSS Grid */
+    display: grid;
+    /* 3 columnas iguales */
+    grid-template-columns: repeat(3, 1fr);
+    /* Separación entre tarjetas */
+    gap: 18px;
+    /* Margen inferior */
+    margin-bottom: 24px;
+}
+
+/* Oculta la sección de métricas cuando no aplica */
+.panel__metricas--oculto {
+    /* Oculto */
+    display: none;
+}
+
+/* Contenedor de tabla con scroll horizontal si es necesario */
+.panel__tabla-envoltura {
+    /* Scroll horizontal automático */
+    overflow-x: auto;
+}
+
+/* Bloque: tarjeta-metrica */
+.tarjeta-metrica {
+    /* Fondo gris muy suave */
+    background-color: #F7FAFC;
+    /* Borde fino */
+    border: 1px solid #EDF2F7;
+    /* Bordes redondeados */
+    border-radius: 16px;
+    /* Relleno interno */
+    padding: 18px;
+}
+
+/* Etiqueta de la métrica */
+.tarjeta-metrica__etiqueta {
+    /* Tamaño de etiqueta */
+    font-size: 13px;
+    /* Color gris */
+    color: #718096;
+}
+
+/* Valor numérico de la métrica */
+.tarjeta-metrica__valor {
+    /* Tamaño destacado */
+    font-size: 26px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Margen superior */
+    margin-top: 4px;
+}
+
+/* Bloque: tabla-datos */
+.tabla-datos {
+    /* Ancho completo */
+    width: 100%;
+    /* Colapsa bordes de celdas */
+    border-collapse: collapse;
+    /* Tamaño de texto de tabla */
+    font-size: 14px;
+}
+
+/* Celdas de cabecera y datos */
+.tabla-datos__encabezado,
+.tabla-datos__celda {
+    /* Alineación a la izquierda */
+    text-align: left;
+    /* Relleno de celda */
+    padding: 12px 10px;
+    /* Línea divisoria inferior */
+    border-bottom: 1px solid #EDF2F7;
+}
+
+/* Cabecera de tabla */
+.tabla-datos__encabezado {
+    /* Fondo gris claro */
+    background-color: #F7FAFC;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Seminegrita */
+    font-weight: 600;
+}
+
+/* Fila cuando no hay registros */
+.tabla-datos__vacia {
+    /* Texto centrado */
+    text-align: center;
+    /* Color gris */
+    color: #718096;
+}
+
+/* Insignia de estado de cita */
+.tabla-datos__estado {
+    /* Relleno tipo etiqueta */
+    padding: 4px 10px;
+    /* Bordes redondeados */
+    border-radius: 20px;
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Seminegrita */
+    font-weight: 600;
+}
+
+/* Estado pendiente */
+.tabla-datos__estado--pendiente {
+    /* Fondo amarillo claro */
+    background-color: #FEFCBF;
+    /* Texto marrón tierra */
+    color: var(--marron-tierra);
+}
+
+/* Estado atendida */
+.tabla-datos__estado--atendida {
+    /* Fondo verde claro */
+    background-color: #C6F6D5;
+    /* Texto verde oscuro */
+    color: #22543D;
+}
+
+/* Botones de acción dentro de cada fila */
+.tabla-datos__boton {
+    /* Sin borde */
+    border: none;
+    /* Bordes redondeados */
+    border-radius: 6px;
+    /* Relleno compacto */
+    padding: 5px 10px;
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Seminegrita */
+    font-weight: 600;
+    /* Cursor de mano */
+    cursor: pointer;
+    /* Separación derecha */
+    margin-right: 4px;
+}
+
+/* Botón confirmar/atender cita */
+.tabla-datos__boton--ok {
+    /* Fondo verde selva */
+    background-color: var(--verde-selva);
+    /* Texto blanco */
+    color: #FFFFFF;
+}
+
+/* Botón eliminar cita */
+.tabla-datos__boton--eliminar {
+    /* Fondo rojo claro */
+    background-color: #FEB2B2;
+    /* Texto rojo oscuro */
+    color: #742A2A;
+}
+
+/* Bloque: portada (Sección Hero) */
+.portada {
+    /* Relleno externo */
+    padding: 60px 40px;
+    /* Ancho máximo */
+    max-width: 1440px;
+    /* Centra horizontalmente */
+    margin: 0 auto;
+}
+
+/* Contenedor de 2 columnas de la portada */
+.portada__contenedor {
+    /* Grid de 2 columnas iguales */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Separación entre columnas */
+    gap: 50px;
+    /* Centra verticalmente columnas */
+    align-items: center;
+}
+
+/* Insignia superior de la portada */
+.portada__insignia {
+    /* Fondo verde agua */
+    background-color: #E6FFFA;
+    /* Texto verde oscuro */
+    color: #234E52;
+    /* Relleno interno */
+    padding: 6px 14px;
+    /* Bordes redondeados */
+    border-radius: 20px;
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Seminegrita */
+    font-weight: 600;
+    /* Bloque en línea */
+    display: inline-block;
+    /* Margen inferior */
+    margin-bottom: 20px;
+}
+
+/* Titular principal de la portada */
+.portada__titulo {
+    /* Tamaño grande de titular */
+    font-size: 48px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Altura de línea compacta y legible */
+    line-height: 1.2;
+    /* Margen inferior */
+    margin-bottom: 20px;
+}
+
+/* Párrafo descriptivo de la portada */
+.portada__texto {
+    /* Tamaño de párrafo */
+    font-size: 16px;
+    /* Color gris oscuro */
+    color: #4A5568;
+    /* Interlineado cómodo */
+    line-height: 1.6;
+    /* Margen inferior */
+    margin-bottom: 30px;
+}
+
+/* Contenedor de botones de acción de la portada */
+.portada__acciones {
+    /* Fila horizontal */
+    display: flex;
+    /* Espacio entre botones */
+    gap: 15px;
+    /* Centrado vertical */
+    align-items: center;
+    /* Margen inferior */
+    margin-bottom: 30px;
+}
+
+/* Texto de calificación de la portada */
+.portada__calificacion {
+    /* Tamaño pequeño */
+    font-size: 14px;
+    /* Color gris */
+    color: #718096;
+}
+
+/* Marco multimedia derecho de la portada */
+.portada__multimedia {
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Altura fija del contenedor */
+    height: 420px;
+    /* Esquinas redondeadas */
+    border-radius: 24px;
+    /* Referencia para posiciones absolutas internas */
+    position: relative;
+    /* Recorta desbordes de la imagen */
+    overflow: hidden;
+    /* Sombra suave */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Fotografía de la portada */
+.portada__imagen {
+    /* Ancho completo */
+    width: 100%;
+    /* Alto completo */
+    height: 100%;
+    /* Cubre sin distorsionar proporción */
+    object-fit: cover;
+    /* Evita espacios blancos inferiores de imagen inline */
+    display: block;
+}
+
+/* Insignia flotante sobre la imagen de portada */
+.portada__insignia-flotante {
+    /* Posición absoluta respecto a .portada__multimedia */
+    position: absolute;
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Relleno interno */
+    padding: 12px 18px;
+    /* Bordes redondeados */
+    border-radius: 12px;
+    /* Tamaño de texto */
+    font-size: 13px;
+    /* Seminegrita */
+    font-weight: 600;
+    /* Sombra sutil */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Sobre la imagen */
+    z-index: 2;
+}
+
+/* Posición superior derecha */
+.portada__insignia-flotante--superior {
+    top: 20px;
+    right: 20px;
+}
+
+/* Posición inferior izquierda */
+.portada__insignia-flotante--inferior {
+    bottom: 20px;
+    left: 20px;
+}
+
+/* Bloque: estadisticas */
+.estadisticas {
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Bordes superior e inferior */
+    border-top: 1px solid #EDF2F7;
+    border-bottom: 1px solid #EDF2F7;
+    /* Relleno vertical */
+    padding: 40px 0;
+}
+
+/* Contenedor de 4 columnas de estadísticas */
+.estadisticas__contenedor {
+    /* Ancho máximo */
+    max-width: 1440px;
+    /* Centrado horizontal */
+    margin: 0 auto;
+    /* Relleno lateral */
+    padding: 0 40px;
+    /* Grid de 4 columnas */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Centra texto en cada columna */
+    text-align: center;
+}
+
+/* Cifra o dato principal de estadística */
+.estadisticas__numero {
+    /* Tamaño destacado */
+    font-size: 32px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Margen inferior */
+    margin-bottom: 5px;
+}
+
+/* Etiqueta descriptiva de estadística */
+.estadisticas__etiqueta {
+    /* Color gris */
+    color: #718096;
+    /* Tamaño de texto */
+    font-size: 14px;
+}
+
+/* Bloque: ciencia */
+.ciencia {
+    /* Relleno externo */
+    padding: 80px 40px;
+    /* Ancho máximo */
+    max-width: 1440px;
+    /* Centrado horizontal */
+    margin: 0 auto;
+}
+
+/* Caja contenedora de 2 columnas con fondo azul claro */
+.ciencia__contenedor {
+    /* Grid de 2 columnas */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Espacio entre columnas */
+    gap: 60px;
+    /* Centra verticalmente */
+    align-items: center;
+    /* Fondo azul claro */
+    background-color: #EBF8FF;
+    /* Bordes redondeados */
+    border-radius: 30px;
+    /* Relleno interno */
+    padding: 60px;
+}
+
+/* Contenedor de imagen de la sección ciencia */
+.ciencia__multimedia {
+    /* Fondo de respaldo mientras carga */
+    background-color: #CBD5E0;
+    /* Alto fijo */
+    height: 380px;
+    /* Bordes redondeados */
+    border-radius: 20px;
+    /* Recorta esquinas */
+    overflow: hidden;
+}
+
+/* Imagen dentro de la sección ciencia */
+.ciencia__imagen {
+    /* Ancho completo */
+    width: 100%;
+    /* Alto completo */
+    height: 100%;
+    /* Cubre el marco proporcionalmente */
+    object-fit: cover;
+    /* Bloque sin espacio extra inferior */
+    display: block;
+}
+
+/* Título de la sección ciencia */
+.ciencia__titulo {
+    /* Tamaño de título */
+    font-size: 36px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Margen inferior */
+    margin-bottom: 20px;
+    /* Interlineado */
+    line-height: 1.3;
+}
+
+/* Párrafo introductorio de ciencia */
+.ciencia__texto {
+    /* Color gris oscuro */
+    color: #4A5568;
+    /* Margen inferior */
+    margin-bottom: 25px;
+}
+
+/* Lista de beneficios sin viñetas por defecto */
+.ciencia__lista {
+    list-style: none;
+}
+
+/* Ítem de lista con sangría para el check */
+.ciencia__item {
+    /* Margen inferior entre ítems */
+    margin-bottom: 15px;
+    /* Referencia para ::before */
+    position: relative;
+    /* Espacio a la izquierda para el ícono check */
+    padding-left: 20px;
+}
+
+/* Check decorativo antes de cada ítem */
+.ciencia__item::before {
+    /* Símbolo check */
+    content: "✓";
+    /* Posicionado a la izquierda */
+    position: absolute;
+    left: 0;
+    /* Color verde selva */
+    color: var(--verde-selva);
+    /* Negrita */
+    font-weight: bold;
+}
+
+/* Título de cada beneficio */
+.ciencia__item-titulo {
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* En bloque para saltar de línea */
+    display: block;
+}
+
+/* Descripción de cada beneficio */
+.ciencia__item-descripcion {
+    /* Tamaño pequeño */
+    font-size: 13px;
+    /* Color gris */
+    color: #718096;
+}
+
+/* Bloque: servicios */
+.servicios {
+    /* Ancho máximo */
+    max-width: 1440px;
+    /* Margen vertical y centrado */
+    margin: 80px auto;
+    /* Relleno lateral */
+    padding: 0 40px;
+}
+
+/* Cuadrícula de 3 columnas para servicios */
+.servicios__cuadricula {
+    /* Grid de 3 columnas iguales */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Espacio entre tarjetas */
+    gap: 30px;
+}
+
+/* Tarjeta individual de servicio */
+.tarjeta-servicio {
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Relleno interno */
+    padding: 40px;
+    /* Bordes redondeados */
+    border-radius: 20px;
+    /* Sombra muy suave */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    /* Borde fino */
+    border: 1px solid #EDF2F7;
+}
+
+/* Número de paso (01, 02, 03) */
+.tarjeta-servicio__paso {
+    /* Tamaño grande */
+    font-size: 28px;
+    /* Negrita */
+    font-weight: 700;
+    /* Color verde selva */
+    color: var(--verde-selva);
+    /* Bloque con margen inferior */
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Título de la tarjeta de servicio */
+.tarjeta-servicio__titulo {
+    /* Tamaño de subtítulo */
+    font-size: 20px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Margen inferior */
+    margin-bottom: 10px;
+}
+
+/* Descripción del servicio */
+.tarjeta-servicio__descripcion {
+    /* Color gris */
+    color: #718096;
+    /* Tamaño de texto */
+    font-size: 14px;
+    /* Margen inferior */
+    margin-bottom: 20px;
+}
+
+/* Caja de precio en Bolivianos */
+.tarjeta-servicio__precio {
+    /* Fondo verde muy claro */
+    background-color: #F0FFF4;
+    /* Texto azul oscuro */
+    color: var(--azul-ocre);
+    /* Relleno interno */
+    padding: 8px 12px;
+    /* Bordes redondeados */
+    border-radius: 8px;
+    /* Tamaño de texto */
+    font-size: 13px;
+}
+
+/* Monto numérico dentro de la etiqueta de precio */
+.tarjeta-servicio__precio strong {
+    /* Color verde selva */
+    color: var(--verde-selva);
+}
+
+/* Bloque: doctores */
+.doctores {
+    /* Ancho máximo */
+    max-width: 1440px;
+    /* Margen vertical y centrado */
+    margin: 80px auto;
+    /* Relleno lateral */
+    padding: 0 40px;
+}
+
+/* Cuadrícula de 3 columnas para doctores */
+.doctores__cuadricula {
+    /* Grid de 3 columnas iguales */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Espacio entre tarjetas */
+    gap: 30px;
+    /* Margen superior */
+    margin-top: 40px;
+}
+
+/* Tarjeta individual de doctor */
+.tarjeta-doctor {
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Bordes redondeados */
+    border-radius: 20px;
+    /* Recorta desbordes */
+    overflow: hidden;
+    /* Sombra suave */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    /* Borde fino */
+    border: 1px solid #EDF2F7;
+    /* Relleno interno */
+    padding: 20px;
+    /* Referencia para la flecha absoluta */
+    position: relative;
+    /* Transición al hacer hover */
+    transition: transform 0.2s;
+}
+
+/* Elevación ligera al pasar el cursor */
+.tarjeta-doctor:hover {
+    transform: translateY(-5px);
+}
+
+/* Foto del veterinario */
+.tarjeta-doctor__foto {
+    /* Ancho completo */
+    width: 100%;
+    /* Alto fijo */
+    height: 260px;
+    /* Bordes redondeados */
+    border-radius: 12px;
+    /* Fondo de respaldo */
+    background-color: #CBD5E0;
+    /* Cubre el marco sin deformarse */
+    object-fit: cover;
+    /* Enfoca la parte superior para no cortar el rostro */
+    object-position: top;
+    /* Margen inferior */
+    margin-bottom: 15px;
+    /* Bloque sin espacio inferior */
+    display: block;
+}
+
+/* Nombre del doctor */
+.tarjeta-doctor__nombre {
+    /* Tamaño de nombre */
+    font-size: 18px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Margen inferior */
+    margin-bottom: 5px;
+}
+
+/* Especialidad del doctor */
+.tarjeta-doctor__especialidad {
+    /* Tamaño de texto */
+    font-size: 14px;
+    /* Color verde selva */
+    color: var(--verde-selva);
+    /* Seminegrita */
+    font-weight: 600;
+    /* Margen inferior */
+    margin-bottom: 5px;
+}
+
+/* Experiencia y matrícula del doctor */
+.tarjeta-doctor__experiencia {
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Color gris */
+    color: #718096;
+}
+
+/* Botón/ícono circular con flecha en la esquina inferior derecha */
+.tarjeta-doctor__flecha {
+    /* Posición absoluta */
+    position: absolute;
+    /* Pegado abajo a la derecha */
+    bottom: 20px;
+    right: 20px;
+    /* Fondo gris claro */
+    background-color: #EDF2F7;
+    /* Dimensiones circulares */
+    width: 32px;
+    height: 32px;
+    /* Flexbox para centrar la flecha */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Forma circular */
+    border-radius: 50%;
+    /* Negrita */
+    font-weight: bold;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+}
+
+/* Bloque: testimonios */
+.testimonios {
+    /* Ancho máximo */
+    max-width: 1440px;
+    /* Margen vertical y centrado */
+    margin: 80px auto;
+    /* Relleno lateral */
+    padding: 0 40px;
+}
+
+/* Texto de calificación general */
+.testimonios__calificacion {
+    /* Tamaño pequeño */
+    font-size: 14px;
+    /* Color gris */
+    color: #718096;
+    /* Margen superior */
+    margin-top: 5px;
+}
+
+/* Cuadrícula de 3 columnas para testimonios */
+.testimonios__cuadricula {
+    /* Grid de 3 columnas iguales */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Espacio entre tarjetas */
+    gap: 30px;
+    /* Margen superior */
+    margin-top: 40px;
+}
+
+/* Tarjeta individual de testimonio */
+.tarjeta-testimonio {
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Relleno interno */
+    padding: 30px;
+    /* Bordes redondeados */
+    border-radius: 20px;
+    /* Sombra suave */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    /* Borde fino */
+    border: 1px solid #EDF2F7;
+}
+
+/* Estrellas de valoración */
+.tarjeta-testimonio__estrellas {
+    /* Color dorado */
+    color: #D69E2E;
+    /* Margen inferior */
+    margin-bottom: 15px;
+}
+
+/* Cita del cliente */
+.tarjeta-testimonio__cita {
+    /* Tamaño de texto */
+    font-size: 14px;
+    /* Color gris oscuro */
+    color: #4A5568;
+    /* Interlineado */
+    line-height: 1.6;
+    /* Margen inferior */
+    margin-bottom: 25px;
+}
+
+/* Contenedor de avatar y datos del autor */
+.tarjeta-testimonio__autor {
+    /* Fila horizontal */
+    display: flex;
+    /* Centrado vertical */
+    align-items: center;
+    /* Espacio entre avatar y texto */
+    gap: 12px;
+}
+
+/* Círculo con iniciales del autor */
+.tarjeta-testimonio__avatar {
+    /* Dimensiones circulares */
+    width: 40px;
+    height: 40px;
+    /* Fondo gris claro */
+    background-color: #E2E8F0;
+    /* Texto azul oscuro */
+    color: var(--azul-ocre);
+    /* Negrita */
+    font-weight: bold;
+    /* Centrado del texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Círculo perfecto */
+    border-radius: 50%;
+    /* Tamaño de iniciales */
+    font-size: 14px;
+}
+
+/* Nombre del autor */
+.tarjeta-testimonio__nombre {
+    /* Tamaño de texto */
+    font-size: 14px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Bloque */
+    display: block;
+}
+
+/* Información de la mascota */
+.tarjeta-testimonio__mascota {
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Color gris */
+    color: #718096;
+}
+
+/* Bloque: contacto */
+.contacto {
+    /* Relleno externo */
+    padding: 80px 40px;
+    /* Ancho máximo */
+    max-width: 1440px;
+    /* Centrado horizontal */
+    margin: 0 auto;
+}
+
+/* Contenedor de 2 columnas en contacto */
+.contacto__contenedor {
+    /* Grid de 2 columnas */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Separación entre columnas */
+    gap: 60px;
+    /* Alineación superior */
+    align-items: start;
+}
+
+/* Título de contacto */
+.contacto__titulo {
+    /* Tamaño de título */
+    font-size: 36px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Márgenes superior, horizontal e inferior */
+    margin: 15px 0 20px;
+}
+
+/* Texto descriptivo de contacto */
+.contacto__texto {
+    /* Color gris oscuro */
+    color: #4A5568;
+}
+
+/* Cada fila de información de contacto */
+.contacto__item {
+    /* Fila horizontal */
+    display: flex;
+    /* Espacio entre ícono y texto */
+    gap: 15px;
+    /* Margen superior */
+    margin-top: 25px;
+    /* Tamaño de texto */
+    font-size: 15px;
+}
+
+/* Título principal de cada ítem de contacto */
+.contacto__item-titulo {
+    /* En bloque */
+    display: block;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+}
+
+/* Detalle secundario de cada ítem de contacto */
+.contacto__item-subtitulo {
+    /* Tamaño pequeño */
+    font-size: 13px;
+    /* Color gris */
+    color: #718096;
+}
+
+/* Tarjeta blanca del formulario de contacto */
+.contacto__tarjeta {
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Relleno interno */
+    padding: 40px;
+    /* Bordes redondeados */
+    border-radius: 24px;
+    /* Sombra suave */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    /* Borde fino */
+    border: 1px solid #EDF2F7;
+}
+
+/* Título de la tarjeta de contacto */
+.contacto__tarjeta-titulo {
+    /* Tamaño de subtítulo */
+    font-size: 22px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Margen inferior */
+    margin-bottom: 20px;
+}
+
+/* Bloque: franja-cta */
+.franja-cta {
+    /* Fondo verde selva */
+    background-color: var(--verde-selva);
+    /* Relleno interno */
+    padding: 60px 40px;
+    /* Texto centrado */
+    text-align: center;
+    /* Texto blanco */
+    color: #FFFFFF;
+    /* Margen superior */
+    margin-top: 60px;
+}
+
+/* Título de la franja CTA */
+.franja-cta__titulo {
+    /* Tamaño de título */
+    font-size: 36px;
+    /* Margen inferior */
+    margin-bottom: 10px;
+}
+
+/* Subtítulo de la franja CTA */
+.franja-cta__texto {
+    /* Tamaño de texto */
+    font-size: 16px;
+    /* Margen inferior */
+    margin-bottom: 25px;
+    /* Ligera transparencia */
+    opacity: 0.9;
+}
+
+/* Bloque: formulario */
+.formulario--oculto {
+    /* Oculta formularios alternativos */
+    display: none;
+}
+
+/* Etiqueta de campo de formulario */
+.formulario__etiqueta {
+    /* Tamaño pequeño */
+    font-size: 13px;
+    /* Seminegrita */
+    font-weight: 600;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Bloque */
+    display: block;
+    /* Margen inferior y superior */
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+/* Entradas de texto, área de texto y selects */
+.formulario__entrada,
+.formulario__area-texto,
+.formulario__seleccion {
+    /* Ancho completo */
+    width: 100%;
+    /* Relleno interno */
+    padding: 12px;
+    /* Borde gris claro */
+    border: 1px solid #E2E8F0;
+    /* Bordes redondeados */
+    border-radius: 10px;
+    /* Fuente Poppins */
+    font-family: 'Poppins', sans-serif;
+    /* Tamaño de texto */
+    font-size: 14px;
+    /* Sin contorno por defecto al enfocar */
+    outline: none;
+    /* Transición del borde al enfocar */
+    transition: border-color 0.2s;
+}
+
+/* Resalta el borde al enfocar el campo */
+.formulario__entrada:focus,
+.formulario__area-texto:focus,
+.formulario__seleccion:focus {
+    border-color: var(--verde-selva);
+}
+
+/* Contenedor de checkbox y su etiqueta */
+.formulario__grupo-casilla {
+    /* Fila horizontal */
+    display: flex;
+    /* Espacio entre casilla y texto */
+    gap: 10px;
+    /* Centrado vertical */
+    align-items: center;
+    /* Margen vertical */
+    margin: 20px 0;
+}
+
+/* Texto de la casilla */
+.formulario__etiqueta-casilla {
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Color gris */
+    color: #718096;
+}
+
+/* Bloque: ventana (Modal) y caja-qr */
+.ventana {
+    /* Posición fija sobre toda la pantalla */
+    position: fixed;
+    /* Cubre top, right, bottom y left en 0 */
+    inset: 0;
+    /* Fondo oscuro semitransparente */
+    background-color: rgba(26, 32, 44, 0.7);
+    /* Centra el diálogo modal */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Z-index superior para quedar encima del header */
+    z-index: 3000;
+    /* Relleno de seguridad en bordes */
+    padding: 20px;
+}
+
+/* Oculta el modal cuando está cerrado */
+.ventana--oculta {
+    display: none;
+}
+
+/* Cuadro central blanco del modal */
+.ventana__dialogo {
+    /* Fondo blanco */
+    background-color: #FFFFFF;
+    /* Ancho adaptable */
+    width: 100%;
+    /* Ancho máximo del diálogo */
+    max-width: 450px;
+    /* Bordes redondeados */
+    border-radius: 24px;
+    /* Relleno interno */
+    padding: 30px;
+    /* Referencia para el botón cerrar */
+    position: relative;
+    /* Límite de altura respecto a la ventana */
+    max-height: 90vh;
+    /* Scroll vertical interno si el contenido supera el alto */
+    overflow-y: auto;
+    /* Sombra pronunciada de modal */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Botón cerrar (×) del modal */
+.ventana__cerrar {
+    /* Posición absoluta arriba a la derecha */
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    /* Sin fondo ni borde */
+    background: none;
+    border: none;
+    /* Tamaño del símbolo de cierre */
+    font-size: 26px;
+    /* Color gris */
+    color: #718096;
+    /* Cursor de mano */
+    cursor: pointer;
+}
+
+/* Barra de pestañas dentro del modal */
+.ventana__pestanas {
+    /* Fila horizontal */
+    display: flex;
+    /* Espacio entre pestañas */
+    gap: 10px;
+    /* Línea inferior */
+    border-bottom: 2px solid #EDF2F7;
+    /* Espacio inferior */
+    padding-bottom: 10px;
+    /* Margen inferior */
+    margin-bottom: 18px;
+}
+
+/* Cada pestaña del modal */
+.ventana__pestana {
+    /* Sin fondo ni borde */
+    background: none;
+    border: none;
+    /* Tipografía Poppins */
+    font-family: 'Poppins', sans-serif;
+    /* Seminegrita */
+    font-weight: 600;
+    /* Tamaño de texto */
+    font-size: 14px;
+    /* Color gris */
+    color: #718096;
+    /* Cursor de mano */
+    cursor: pointer;
+    /* Relleno interno */
+    padding: 6px 12px;
+    /* Bordes redondeados */
+    border-radius: 8px;
+}
+
+/* Pestaña seleccionada actualmente */
+.ventana__pestana--activa {
+    /* Fondo verde agua claro */
+    background-color: #E6FFFA;
+    /* Texto azul oscuro */
+    color: var(--azul-ocre);
+}
+
+/* Título del modal */
+.ventana__titulo {
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+    /* Tamaño de título */
+    font-size: 20px;
+}
+
+/* Texto de ayuda dentro del modal */
+.ventana__ayuda {
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Color gris */
+    color: #718096;
+    /* Fondo gris claro */
+    background-color: #F7FAFC;
+    /* Relleno interno */
+    padding: 8px 12px;
+    /* Bordes redondeados */
+    border-radius: 8px;
+    /* Margen vertical */
+    margin: 10px 0 12px;
+}
+
+/* Espaciado superior del botón enviar en modales */
+.ventana__enviar {
+    margin-top: 16px;
+}
+
+/* Vista previa de pago por QR Simple en Bolivianos */
+.caja-qr {
+    /* Fila horizontal */
+    display: flex;
+    /* Centrado vertical */
+    align-items: center;
+    /* Espacio entre recuadro QR y texto */
+    gap: 14px;
+    /* Fondo verde muy claro */
+    background-color: #F0FFF4;
+    /* Borde discontinuo verde */
+    border: 1.5px dashed var(--verde-selva);
+    /* Bordes redondeados */
+    border-radius: 12px;
+    /* Relleno interno */
+    padding: 12px;
+    /* Margen superior */
+    margin-top: 14px;
+}
+
+/* Oculta la caja QR si el método de pago no es QR */
+.caja-qr--oculta {
+    display: none;
+}
+
+/* Recuadro simbólico del código QR */
+.caja-qr__codigo {
+    /* Dimensiones cuadradas */
+    width: 58px;
+    height: 58px;
+    /* Fondo azul oscuro */
+    background-color: var(--azul-ocre);
+    /* Texto blanco */
+    color: #FFFFFF;
+    /* Bordes redondeados */
+    border-radius: 8px;
+    /* Centra texto interno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Negrita */
+    font-weight: 700;
+    /* Tamaño pequeño */
+    font-size: 12px;
+    /* Evita compresión */
+    flex-shrink: 0;
+}
+
+/* Título dentro de la caja QR */
+.caja-qr__titulo {
+    /* Tamaño pequeño */
+    font-size: 13px;
+    /* Color azul oscuro */
+    color: var(--azul-ocre);
+}
+
+/* Texto del monto calculado en Bs. */
+.caja-qr__monto {
+    /* Tamaño pequeño */
+    font-size: 13px;
+    /* Color de texto oscuro */
+    color: var(--texto-oscuro);
+}
